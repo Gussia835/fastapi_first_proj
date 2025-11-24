@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block header %}Калькулятор{% endblock %}
+
+{% block content %}
+    <form method="POST" action="/calculate">
+        <label for="num1">Число 1: </label>
+            <input id="num1" type="number" name="num1" required><br><br>
+        <label for="num2">Число 2: </label>
+            <input id="num2" type="number" name="num2" required><br><br>
+        <button type="submit">Сложить</button>
+    </form>
+
+    {% if result is defined %}
+        <h2>Результат: {{ result }}<h2>
+    {% endif %}
+{% endblock %}
