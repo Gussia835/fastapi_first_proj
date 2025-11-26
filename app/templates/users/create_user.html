@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block header %}Форма создания пользователя{% endblock %}
+
+{% block content %}
+    <form method="post" action="/create_user">
+        <label for="name_user">Имя пользователя</label>
+            <input id="name_user" name="name" type="text" required><br><br>
+        <label for="age_user">Возраст</label>
+            <input id="age_user" name="age" type="number" required><br><br>
+        <label for="user_friends">Выберите друзей: </h3>
+        {% for u in existing_users %}
+                <input id="user_friends" type="checkbox" name="friends" value="{{ u.id }}">
+                {{ u.name }}-{{ u.id }}
+        {% endfor %}
+        <button type="submit">Готово</button>
+    </form>
+{% endblock %}

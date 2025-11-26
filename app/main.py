@@ -4,6 +4,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.encoders import jsonable_encoder
 from models.Number import Numbers
 from models.User import User
+from database import engine, Base
 
 
 app = FastAPI()
@@ -14,19 +15,6 @@ templates = Jinja2Templates(directory='templates')
 @app.get('/', response_class=HTMLResponse)
 async def root(request: Request):
     return templates.TemplateResponse('index.html', {'request': request})
-
-
-@app.get('/user', response_class=HTMLResponse)
-async def get_user(request: Request):
-    user = User(name='John Doe', id=1)
-    return templates.TemplateResponse('user.html', {'request': request,
-                                                    'user': user})
-
-
-@app.post('/create_user/', response_class=HTMLResponse)
-async def create_user(request: Request,
-                      form1=Form(...)):
-    pass
 
 
 @app.get('/calculate', response_class=HTMLResponse)

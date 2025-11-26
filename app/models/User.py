@@ -1,8 +1,12 @@
-from datetime import datetime
+from sqlalchemy import Column, Integer, String, ARRAY
 from pydantic import BaseModel
 
 
 class User(BaseModel):
-    name: str
-    id: int
-    
+    __tablename__ = 'users'
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, index=True)
+    age = Column(Integer)
+    friends = Column(ARRAY(Integer))
+
